@@ -84,7 +84,7 @@ const actions = [
   "got accepted for"
 ];
 
-const amounts = ["$750", "$750", "$750"];
+const amounts = ["$100", "$100", "$100"];
 
 function generateFeedItem(): FeedItem {
   const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];

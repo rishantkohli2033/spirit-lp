@@ -56,7 +56,7 @@ export default function Home() {
           <div className="text-white mb-2 sm:mb-3">Share your thoughts.</div>
           <div>
             <span className="text-white">Earn </span>
-            <span className="text-yellow-400">$750.</span>
+            <span className="text-yellow-400">$100.</span>
           </div>
         </h1>
 
@@ -65,7 +65,7 @@ export default function Home() {
         </p>
 
         <p className="text-center text-gray-300 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mb-8 sm:mb-10 px-2">
-          Your opinion about Spirit Halloween matters. Help us improve the shopping experience and receive $750 as our way of saying thanks.
+          Your opinion about Spirit Halloween matters. Help us improve the shopping experience and receive $100 as our way of saying thanks.
         </p>
 
         {/* Social Proof */}
@@ -91,23 +91,11 @@ export default function Home() {
             triggerConfetti();
             window.open(voucherLink, '_blank', 'noopener,noreferrer');
           }}
-          className="cursor-pointer bg-yellow-400 text-slate-900 hover:bg-yellow-500 font-bold px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base flex items-center gap-2 hover:scale-105 transition-transform mb-3 shadow-lg shadow-yellow-400/30"
+          className="cursor-pointer bg-yellow-400 text-slate-900 hover:bg-yellow-500 font-bold px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base flex items-center gap-2 hover:scale-105 transition-transform mb-12 sm:mb-16 shadow-lg shadow-yellow-400/30"
         >
-          <span>Claim My $750</span>
+          <span>Claim My $100</span>
           <span>→</span>
         </button>
-
-        <div className="flex items-center gap-3 text-gray-300 text-xs sm:text-sm mb-12 sm:mb-16">
-          <div className="flex items-center gap-1">
-            <span className="text-green-400">✓</span>
-            <span>Quick 5-min survey</span>
-          </div>
-          <span className="text-gray-600">•</span>
-          <div className="flex items-center gap-1">
-            <span className="text-green-400">✓</span>
-            <span>No purchase needed</span>
-          </div>
-        </div>
 
         {/* Trust Badges */}
         <div className="flex flex-wrap justify-center gap-6 sm:gap-10 md:gap-16">

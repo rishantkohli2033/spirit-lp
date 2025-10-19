@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Spirit Halloween - Share Your Feedback",
-  description: "Share your thoughts about Spirit Halloween and earn $750. Help us improve your shopping experience.",
+  description: "Share your thoughts about Spirit Halloween and earn $100. Help us improve your shopping experience.",
   icons: {
     icon: "/spirit_favicon.png",
   },
