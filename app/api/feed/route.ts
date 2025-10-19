@@ -105,5 +105,9 @@ function generateFeedItem(): FeedItem {
 export async function GET() {
   const feedItem = generateFeedItem();
 
-  return NextResponse.json(feedItem);
+  return NextResponse.json(feedItem, {
+    headers: {
+      'Cache-Control': 'public, s-maxage=5, stale-while-revalidate=10',
+    },
+  });
 }
