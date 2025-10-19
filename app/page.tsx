@@ -31,9 +31,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Fog overlay */}
-      <div className="fog"></div>
-
       {/* Header */}
       <div className="flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
         <Image
