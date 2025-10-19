@@ -1,102 +1,133 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
-export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+interface FallingItem {
+  top: number;
+  left: number;
+}
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+interface ConfettiItem extends FallingItem {
+  id: number;
+  type: "bat" | "pumpkin";
+}
+
+export default function Home() {
+  const [bats, setBats] = useState<FallingItem[]>([]);
+  const [pumpkins, setPumpkins] = useState<FallingItem[]>([]);
+  const [confetti, setConfetti] = useState<ConfettiItem[]>([]);
+
+  const batsCount = 6;
+  const pumpkinsCount = 3;
+  const confettiCount = 20;
+
+  useEffect(() => {
+    setBats(
+      Array.from({ length: batsCount }).map(() => ({
+        top: Math.random() * -200,
+        left: Math.random() * 100,
+      }))
+    );
+    setPumpkins(
+      Array.from({ length: pumpkinsCount }).map(() => ({
+        top: Math.random() * -100,
+        left: Math.random() * 100,
+      }))
+    );
+  }, []);
+
+  const triggerConfetti = () => {
+    const newConfetti: ConfettiItem[] = Array.from({ length: confettiCount }).map((_, i) => ({
+      id: i,
+      type: Math.random() > 0.5 ? "bat" : "pumpkin",
+      left: Math.random() * 100,
+      top: 0,
+    }));
+    setConfetti(newConfetti);
+  };
+
+  const voucherLink = "https://your-link-here.com";
+
+  return (
+    <div className="min-h-screen flex flex-col justify-center items-center px-4 relative overflow-hidden bg-gradient-to-b from-black to-purple-900">
+      {/* Fog overlay */}
+      <div className="fog"></div>
+
+      {/* Falling Bats */}
+      {bats.map((b, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-12 h-12"
+          style={{ top: `${b.top}px`, left: `${b.left}vw` }}
+          animate={{ y: ["-50px", "110vh"], rotate: [0, 360] }}
+          transition={{ duration: 8 + Math.random() * 4, repeat: Infinity, ease: "linear" }}
+        >
+          <Image src="/bat.png" alt="bat" width={48} height={48} />
+        </motion.div>
+      ))}
+
+      {/* Floating Pumpkins */}
+      {pumpkins.map((p, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-16 h-16"
+          style={{ bottom: `${p.top}px`, left: `${p.left}vw` }}
+          animate={{ y: ["100vh", "-50px"], rotate: [0, 360] }}
+          transition={{ duration: 12 + Math.random() * 4, repeat: Infinity, ease: "linear" }}
+        >
+          <Image src="/pumpkin.png" alt="pumpkin" width={64} height={64} />
+        </motion.div>
+      ))}
+
+      {/* Centered Content */}
+      <div className="flex flex-1 flex-col items-center justify-center w-full max-w-2xl gap-6 z-10">
+        <Image
+          src="/spirit-halloween-logo.png"
+          alt="Spirit Halloween"
+          width={300}
+          height={140}
+        />
+        <span className="bg-orange-500 text-black px-4 py-2 rounded-full text-sm sm:text-base font-semibold">
+          New feedback program
+        </span>
+        <h1 className="text-center text-3xl sm:text-5xl md:text-6xl font-extrabold text-orange-400 leading-snug">
+          Share your thoughts. Earn $750.
+        </h1>
+        <p className="text-center text-white text-base sm:text-lg md:text-xl max-w-md leading-relaxed">
+          Your opinion about Spirit Halloween matters. Help us improve the shopping experience and receive $750 as our way of saying thanks.
+        </p>
+        <motion.a
+          href={voucherLink}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={triggerConfetti}
+          whileHover={{ scale: 1.05, textShadow: "0 0 12px #FF6F00" }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-orange-500 hover:bg-orange-600 text-black font-bold py-6 px-12 sm:px-20 rounded-3xl text-xl sm:text-2xl md:text-3xl shadow-xl transition-all w-full sm:w-auto text-center"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          Claim Voucher
+        </motion.a>
+      </div>
+
+      {/* Confetti Animation */}
+      {confetti.map((c) => (
+        <motion.div
+          key={c.id}
+          className="absolute w-10 h-10"
+          style={{ left: `${c.left}%`, top: "-50px", zIndex: 60 }}
+          initial={{ y: 0, rotate: 0, opacity: 1 }}
+          animate={{ y: 500 + Math.random() * 100, rotate: 360, opacity: 0 }}
+          transition={{ duration: 2 + Math.random() * 1, ease: "easeOut" }}
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+          <Image src={c.type === "bat" ? "/bat.png" : "/pumpkin.png"} alt={c.type} width={40} height={40} />
+        </motion.div>
+      ))}
+
+      {/* Footer */}
+      <footer className="text-white text-sm z-10 mb-6 text-center w-full">
+        <p>© 2025 Spirit Halloween. All rights reserved.</p>
       </footer>
     </div>
   );
