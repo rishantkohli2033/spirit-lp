@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Header */}
-      <div className="flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6">
+      <div className="flex justify-between items-center px-4 sm:px-6 py-4 sm:py-6 relative">
         <Image
           src="/spirit-halloween-logo.png"
           alt="Spirit Halloween"
@@ -40,7 +40,9 @@ export default function Home() {
           height={84}
           className="w-32 sm:w-44 h-auto"
         />
-        <LiveFeed />
+        <div className="absolute top-4 sm:top-6 right-4 sm:right-6">
+          <LiveFeed />
+        </div>
       </div>
 
       {/* Centered Content */}
@@ -68,17 +70,17 @@ export default function Home() {
         {/* Social Proof */}
         <div className="flex items-center gap-3 mb-8">
           <div className="flex -space-x-2">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 border-2 border-slate-900"></div>
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-cyan-400 border-2 border-slate-900"></div>
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-yellow-400 border-2 border-slate-900"></div>
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-emerald-400 border-2 border-slate-900"></div>
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 border-2 border-slate-900 flex items-center justify-center text-white text-xs font-semibold">JM</div>
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-cyan-400 border-2 border-slate-900 flex items-center justify-center text-white text-xs font-semibold">SK</div>
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-yellow-400 border-2 border-slate-900 flex items-center justify-center text-white text-xs font-semibold">AL</div>
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-emerald-400 border-2 border-slate-900 flex items-center justify-center text-white text-xs font-semibold">DR</div>
           </div>
           <div className="text-left">
             <div className="flex items-center gap-1">
               <span className="text-yellow-400 text-sm">★★★★★</span>
             </div>
             <p className="text-gray-300 text-xs sm:text-sm">
-              <span className="font-semibold text-white">12,847</span> participants this month
+              <span className="font-semibold text-white">15,234</span> participants this month
             </p>
           </div>
         </div>

@@ -6,7 +6,6 @@ interface FeedItem {
   location: string;
   action: string;
   amount: string;
-  timestamp: number;
 }
 
 const firstNames = [
@@ -23,64 +22,47 @@ const firstNames = [
 ];
 
 const locations = [
-  "Austin", "Dallas", "Houston", "San Antonio",
-  "Los Angeles", "San Diego", "San Francisco", "Sacramento",
-  "Miami", "Orlando", "Tampa", "Jacksonville",
-  "New York", "Buffalo", "Rochester", "Albany",
-  "Chicago", "Springfield", "Naperville",
-  "Philadelphia", "Pittsburgh", "Harrisburg",
-  "Columbus", "Cleveland", "Cincinnati",
+  // Keep location names short (max ~12 characters for mobile)
+  "Austin", "Dallas", "Houston",
+  "LA", "San Diego", "SF",
+  "Miami", "Orlando", "Tampa",
+  "NYC", "Buffalo", "Albany",
+  "Chicago", "Naperville",
+  "Philly", "Pittsburgh",
+  "Columbus", "Cleveland",
   "Atlanta", "Savannah", "Augusta",
   "Charlotte", "Raleigh", "Durham",
-  "Detroit", "Grand Rapids", "Lansing",
-  "Newark", "Jersey City", "Trenton",
-  "Richmond", "Virginia Beach", "Norfolk",
+  "Detroit", "Lansing",
+  "Newark", "Trenton",
+  "Richmond", "Norfolk",
   "Seattle", "Spokane", "Tacoma",
   "Phoenix", "Tucson", "Mesa",
-  "Boston", "Worcester", "Cambridge",
-  "Nashville", "Memphis", "Knoxville",
-  "Indianapolis", "Fort Wayne", "Evansville",
-  "Kansas City", "St. Louis", "Springfield",
-  "Baltimore", "Annapolis", "Rockville",
-  "Milwaukee", "Madison", "Green Bay",
-  "Denver", "Colorado Springs", "Aurora",
-  "Minneapolis", "St. Paul", "Rochester",
-  "Charleston", "Columbia", "Greenville",
-  "Birmingham", "Montgomery", "Mobile"
+  "Boston", "Cambridge",
+  "Nashville", "Memphis",
+  "Indy", "Fort Wayne",
+  "KC", "St. Louis",
+  "Baltimore", "Rockville",
+  "Milwaukee", "Madison",
+  "Denver", "Aurora",
+  "Charleston"
 ];
 
 const actions = [
-  // Completed/Claimed actions
+  // Completed/Claimed actions - keep short for mobile
   "just earned",
-  "completed survey and earned",
   "received",
-  "qualified and earned",
   "just claimed",
-  "successfully earned",
-  "finished the survey and got",
-  "got rewarded with",
   "just received",
   "was paid out",
-  "completed feedback for",
-  "earned their reward of",
-  "just qualified for",
   "cashed out",
-  "redeemed their reward of",
-  // In-progress actions
-  "is taking the survey for",
-  "just started their survey for",
-  "is answering questions for",
-  "is currently completing their feedback for",
-  "just began the survey for",
-  "is halfway through earning",
-  "is working on their survey for",
-  // Other activity types
+  // In-progress actions - short versions only
+  "is earning",
+  "just started for",
+  "is working on",
+  // Other activity types - short
   "just signed up for",
   "qualified to earn",
   "was approved for",
-  "just verified their account for",
-  "joined the program for",
-  "is reviewing the offer for",
   "got accepted for"
 ];
 
@@ -92,13 +74,15 @@ function generateFeedItem(): FeedItem {
   const action = actions[Math.floor(Math.random() * actions.length)];
   const amount = amounts[Math.floor(Math.random() * amounts.length)];
 
+  // Simple numeric ID for avatar color consistency
+  const id = Math.floor(Math.random() * 10000).toString();
+
   return {
-    id: `${Date.now()}-${Math.random()}`,
+    id,
     name: firstName,
     location,
     action,
-    amount,
-    timestamp: Date.now()
+    amount
   };
 }
 
