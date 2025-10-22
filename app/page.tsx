@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import LiveFeed from "./components/LiveFeed";
+import FAQModal from "./components/FAQModal";
 
 interface ConfettiItem {
   id: number;
@@ -14,6 +15,7 @@ interface ConfettiItem {
 
 export default function Home() {
   const [confetti, setConfetti] = useState<ConfettiItem[]>([]);
+  const [isFAQOpen, setIsFAQOpen] = useState(false);
 
   const confettiCount = 15;
 
@@ -90,10 +92,21 @@ export default function Home() {
             triggerConfetti();
             window.open(voucherLink, '_blank', 'noopener,noreferrer');
           }}
-          className="cursor-pointer bg-yellow-400 text-slate-900 hover:bg-yellow-500 font-bold px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base flex items-center gap-2 hover:scale-105 transition-transform mb-12 sm:mb-16 shadow-lg shadow-yellow-400/30"
+          className="cursor-pointer bg-yellow-400 text-slate-900 hover:bg-yellow-500 font-bold px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base flex items-center gap-2 hover:scale-105 transition-transform mb-4 sm:mb-6 shadow-lg shadow-yellow-400/30"
         >
           <span>Claim My $100</span>
           <span>→</span>
+        </button>
+
+        {/* FAQ Trigger Button */}
+        <button
+          onClick={() => setIsFAQOpen(true)}
+          className="cursor-pointer text-purple-300 hover:text-white font-medium text-sm sm:text-base flex items-center gap-1 transition-colors mb-8 sm:mb-12 underline decoration-purple-400/50 hover:decoration-white underline-offset-4 mr-2"
+        >
+          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>Have questions?</span>
         </button>
 
         {/* Trust Badges */}
@@ -118,6 +131,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* FAQ Modal */}
+      <FAQModal isOpen={isFAQOpen} onClose={() => setIsFAQOpen(false)} />
 
       {/* Confetti Animation */}
       {confetti.map((c) => (
