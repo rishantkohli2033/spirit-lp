@@ -96,15 +96,15 @@ export default function LiveFeed() {
 
               {/* Content */}
               <div className="flex-1 min-w-0">
-                <p className="text-white font-semibold text-xs sm:text-sm truncate mb-0.5 sm:mb-1">
+                <p className="text-white font-semibold text-xs sm:text-sm mb-0.5 sm:mb-1">
                   {currentItem.name}
                 </p>
-                <p className="text-purple-200 text-[10px] sm:text-xs mb-1 sm:mb-1.5 truncate">
+                <p className="text-purple-200 text-[10px] sm:text-xs mb-1 sm:mb-1.5">
                   <span className="text-purple-300">from</span> {currentItem.location}
                 </p>
                 <div className="flex items-center gap-1 sm:gap-1.5">
                   <span className="text-yellow-400 text-[10px] sm:text-xs font-medium">✓</span>
-                  <p className="text-purple-100 text-[10px] sm:text-xs truncate">
+                  <p className="text-purple-100 text-[10px] sm:text-xs">
                     {currentItem.action} <span className="text-yellow-400 font-semibold">{currentItem.amount}</span>
                   </p>
                 </div>
