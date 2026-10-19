@@ -29,7 +29,7 @@ export default function Home() {
     setConfetti(newConfetti);
   };
 
-  const voucherLink = "https://glitchy.go2cloud.org/aff_c?offer_id=722&aff_id=2431";
+  const voucherLink = "https://linkthem.net/aff_c?offer_id=3280&aff_id=2431";
 
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
